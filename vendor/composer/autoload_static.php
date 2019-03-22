@@ -451,11 +451,10 @@ class ComposerStaticInit406332eb847756f4e9d8b91fbc1bde33
     );
 
     public static $classMap = array (
-        'App\\Celebrities' => __DIR__ . '/../..' . '/app/Celebrities.php',
+        'App\\Categorie' => __DIR__ . '/../..' . '/app/Categorie.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
-        'App\\Fact' => __DIR__ . '/../..' . '/app/Fact.php',
-        'App\\Http\\Controllers\\APIFactController' => __DIR__ . '/../..' . '/app/Http/Controllers/APIFactController.php',
+        'App\\Http\\Controllers\\APICategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/APICategoryController.php',
         'App\\Http\\Controllers\\APIFindCelebritiesController' => __DIR__ . '/../..' . '/app/Http/Controllers/APIFindCelebritiesController.php',
         'App\\Http\\Controllers\\APILoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/APILoginController.php',
         'App\\Http\\Controllers\\APIRegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/APIRegisterController.php',
@@ -465,9 +464,9 @@ class ComposerStaticInit406332eb847756f4e9d8b91fbc1bde33
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
-        'App\\Http\\Controllers\\FactOperations' => __DIR__ . '/../..' . '/app/Http/Controllers/FactOperations.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\Operations' => __DIR__ . '/../..' . '/app/Http/Controllers/Operations.php',
+        'App\\Http\\Controllers\\QuestionOperations' => __DIR__ . '/../..' . '/app/Http/Controllers/QuestionOperations.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -481,6 +480,7 @@ class ComposerStaticInit406332eb847756f4e9d8b91fbc1bde33
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Question' => __DIR__ . '/../..' . '/app/Question.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
         'BeyondCode\\DumpServer\\DumpServerServiceProvider' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',

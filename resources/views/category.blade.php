@@ -46,7 +46,7 @@
                                 <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                               <button type="submit" class="btn btn-primary">Add</button>                             
-                            </div>                             
+                            </div> 
                              </div>
                                 @if ($errors->any())
                                   <div class="alert alert-danger">
@@ -57,9 +57,9 @@
                                     </ul>
                                   </div><br />
                                 @endif
-                              </form>                                                           
-                            </div>                            
-                          </div>                    
+                              </form>
+                            </div> 
+                          </div> 
                       </div>
                        
                       <a href="{{ route('home')}}" class="btn btn-warning">Home</a> 
