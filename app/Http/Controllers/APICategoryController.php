@@ -22,13 +22,15 @@ class APICategoryController extends Controller
 
         $search = $request->get('search'); 
  
-        $cat = Categorie::select('id')->where('title',$search)->get(); 
+        $cat = Categorie::select('id')->where('title',$search)->get();  
+
         $qry = Question::select('question','answer')->where('categories',$cat->toArray())->get();
        
         if($qry == '[]'){  
             return response()->json('No Category Select !!');  
         }
         else{
+            
             return response()->json($qry);
         } 
     }

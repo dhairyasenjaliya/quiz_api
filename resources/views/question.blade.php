@@ -13,17 +13,17 @@
             <div class="card">
                 <div class="card-header"><h3>Manage Questions</h3></div> 
 
-                <!-- <form action="/searchfact" method="POST" role="search">
+                <form action="/searchquestion" method="POST" role="search">
                     {{ csrf_field() }}
                     <div class="input-group">
                         <input required type="text" class="form-control" name="q"
-                            placeholder="Search facts"> <span class="input-group-btn">
+                            placeholder="Search Question"> <span class="input-group-btn">
                             <button type="submit" class="btn btn-primary">
                                Search
                             </button>
                         </span>
                     </div>
-                </form> -->
+                </form>
                 
                 <div class="d-flex justify-content-center">
             <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add </button>
@@ -37,27 +37,23 @@
                               </button>
                             </div>
                             <div class="modal-body">
-                              <form method="post" action="{{ route('quest.store') }}"> 
+                              <form method="post"  enctype="multipart/form-data" action="{{ route('quest.store') }}"> 
                                 @csrf
                                
                                 <div class="form-group">
                           <label for="categories">Category</label>
                          
-                          <select  class="form-control" name="categories" id="categories" data-parsley-required="true">
+                             <select  class="form-control" name="categories" id="categories" data-parsley-required="true">
                             @foreach ($cate as $categ) 
                             {   
                                     <option value="{{ $categ->id }}" selected="selected">{{ $categ->title }}</option>
                             }
                             @endforeach
-                          </select>
+                          </select>  
                            
 
                         </div>
-
-
-
-
-                                <div class="form-group">
+                        <div class="form-group">
                           <label for="recipient-name" class="col-form-label">Question:</label>
                           <textarea name="question"  class="form-control" id="recipient-name">  </textarea>
                         </div> 
@@ -68,7 +64,28 @@
                             False
                           <input type="radio" name="answer"  value="False"   >                        
 
-                        </div>           
+                        </div>         
+                        <label for="recipient-img" class="col-form-label">Image :</label>
+
+                                  <div class="file is-danger has-name is-boxed">
+                                      <label class="file-label">
+                                      
+                                        <input class="file-input" type="file" name="filenames">
+                                        <span class="file-cta">
+
+                                          <span class="file-icon">
+                                            <i class="fas fa-cloud-upload-alt"></i>
+                                          </span>
+                                        
+                                          <span class="file-label">
+                                              Upload Image
+                                          </span>
+                                        </span>
+                                        <span class="file-name">
+                                        
+                                        </span>
+                                      </label>
+                                    </div>  
                                 
                                 <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -103,6 +120,7 @@
         <th><strong>Categories</strong></th>
         <th><strong>Question</strong></th>
         <th><strong>Answer</strong></th>
+        <th><strong>Image</strong></th>
         <th><strong>Edit</strong></th>   
         <th><strong>Delete</strong></th>   
       </tr>
@@ -114,6 +132,13 @@
         <td>{{ $question->categorie->title }}</td> 
         <td>{{ $question->question }}</td>  
         <td>{{ $question->answer }}</td>  
+        <td>
+          @if($question->image!=null)
+            <div><img src="{{url('/images/question/'.$question->image)}}" height=80 width=80/></div> 
+          @else
+              Upload Image
+          @endif
+        </td> 
         <td> 
         <a href="{{ route('quest.edit',$question->id)}}" class="btn btn-primary">Edit</a>      
             </td>

@@ -17,7 +17,7 @@
                     {{ csrf_field() }}
                     <div class="input-group">
                         <input required type="text" class="form-control" name="q"
-                            placeholder="Search users"> <span class="input-group-btn">
+                            placeholder="Search Category"> <span class="input-group-btn">
                             <button type="submit" class="btn btn-primary">
                                Search
                             </button>
@@ -37,15 +37,41 @@
                               </button>
                             </div>
                             <div class="modal-body">
-                              <form method="post" action="{{ route('crud.store') }}">                               
+                              <form method="post" action="{{ route('crud.store') }}" enctype="multipart/form-data">  
                                 @csrf
                                 <div class="form-group">
                                   <label for="recipient-name" class="col-form-label">Title:</label>
                                   <input type="text" required name="title" class="form-control" id="recipient-name">
-                                </div>                                
+
+                                  <label for="recipient-img" class="col-form-label">Image :</label>
+
+                                  <div class="file is-danger has-name is-boxed">
+                                      <label class="file-label">
+                                      
+                                        <input class="file-input" type="file" name="filenames">
+                                        <span class="file-cta">
+
+                                          <span class="file-icon">
+                                            <i class="fas fa-cloud-upload-alt"></i>
+                                          </span>
+                                        
+                                          <span class="file-label">
+                                              Upload Image
+                                          </span>
+                                        </span>
+                                        <span class="file-name">
+                                        
+                                        </span>
+                                      </label>
+                                    </div>
+
+                                    <label for="recipient-check" class="col-form-label">Daily Challenge :</label>
+
+                                  <input type="checkbox" name="isDaily" >  
+                                </div>  
                                 <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="submit" class="btn btn-primary">Add</button>                             
+                              <button type="submit" class="btn btn-primary">Add</button> 
                             </div> 
                              </div>
                                 @if ($errors->any())
@@ -65,7 +91,7 @@
                       <a href="{{ route('home')}}" class="btn btn-warning">Home</a> 
                       <a href="{{ route('category')}}" class="btn btn-primary">Manage</a> 
                                   
-                <div class="table-responsive">                            
+                <div class="table-responsive"> 
              </div>
         </div>
  
@@ -74,6 +100,8 @@
       <tr>
         <th><strong>Id</strong></th>
         <th><strong>Title</strong></th> 
+        <th><strong>IsDaily</strong></th> 
+        <th><strong>Image</strong></th>
         <th><strong>Edit</strong></th>
         <th><strong>Delete</strong></th> 
       </tr>
@@ -83,8 +111,20 @@
       <tr> 
         <td>{{ $category->id }}</td>
         <td>{{ $category->title }}</td> 
+        <td>
+        
+              {{ $category->isDaily }}
+        
+        </td> 
+        <td>
+          @if($category->image!=null)
+            <div><img src="{{url('/images/category/'.$category->image)}}" height=80 width=80/></div> 
+          @else
+              Upload Image
+          @endif
+        </td> 
         <td> 
-        <a href="{{ route('crud.edit',$category->id)}}" class="btn btn-primary">Edit</a>      
+        <a href="{{ route('crud.edit',$category->id)}}" class="btn btn-primary">Edit</a> 
             </td>
             <td>
                 <form action="{{ route('crud.destroy', $category->id)}}" method="post">

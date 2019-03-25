@@ -11,7 +11,7 @@
 |
 */
 use App\Categorie;
-use App\Fact;
+use App\Question;
 use Illuminate\Support\Facades\Input;
 
 Route::get('/', function () {
@@ -41,13 +41,14 @@ Route::any('/search',function(Request $request){
 
 
 Route::any('/searchquestion',function(Request $request){
-    $q = Input::get( 'q' ); 
-    $facts = Fact::where('description','LIKE','%'.$q.'%')->get();
-    if(count($facts) > 0)
-        return view('/question',['facts'=>$facts]) ;
+    $q = Input::get('q');      
+    $questions = Question::where('question','LIKE','%'.$q.'%')->get();
+    $cate = Categorie::all();     
+    if(count($questions) > 0)
+        return view('question',['questions'=>$questions],['cate'=>$cate]) ;
     else{
-        $facts = Fact::all();
-        return view('/question',['facts'=>$facts]);
+        $questions = Question::all();
+        return view('question',['questions'=>$questions],['cate'=>$cate]);
     }    
 });
 

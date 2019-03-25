@@ -8,7 +8,7 @@ class Question extends Model
 {
     protected $table = 'questions';
     protected $fillable = [
-        'categories', 'question','answer' 
+        'categories', 'question','answer','image'
     ];
     public function Categorie()
     {

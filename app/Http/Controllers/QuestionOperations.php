@@ -11,6 +11,7 @@ use LaravelFCM\Message\PayloadDataBuilder;
 use LaravelFCM\Message\PayloadNotificationBuilder;
 use FCM;
 use LaravelFCM\Message\Topics;
+use File;
 
 class QuestionOperations extends Controller
 {
@@ -47,13 +48,27 @@ class QuestionOperations extends Controller
         $request->validate([
             'categories'=>'required',
             'question'=> 'required',
-            'answer'=>'required' 
+            'answer'=>'required' ,
+            'filenames' => 'image'
           ]);
+
           $Question = new Question([
             'categories' => $request->get('categories'),
             'question'=> $request->get('question'),
             'answer'=>$request->get('answer') 
           ]);
+        
+          $imageName = $request->file('filenames');
+           
+          if($imageName!=null)
+          {              
+              $extension = $imageName->getClientOriginalExtension();                    
+              $imageName->move(public_path('images/question/'), $request->categories.'-'.$imageName->getClientOriginalName());    
+              $name = $request->categories.'-'.$imageName->getClientOriginalName(); 
+              $Question->image = $name;
+              $Question->save();   
+          } 
+
           $Question->save();   
           
           // $notificationBuilder = new PayloadNotificationBuilder('New Fact');
@@ -71,7 +86,8 @@ class QuestionOperations extends Controller
           // $topicResponse->shouldRetry();
           // $topicResponse->error();
  
-          return redirect('/question')->with('success', 'Question Added!!');
+         
+              return redirect('/question')->with('success', 'Question Added!!');
     }
 
  
@@ -113,9 +129,31 @@ class QuestionOperations extends Controller
         $request->validate([
           'categories'=>'required',
           'question'=> 'required',
-          'answer'=>'required' 
+          'answer'=>'required' ,
+          'image' => 'image'
         ]);
     
+
+        $Question = Question::find($id); 
+        $imageName = $request->file('filenames');
+  
+        if($imageName!=null)
+        {
+            File::delete(public_path('images\\question\\'.$Question->image));
+            $extension = $imageName->getClientOriginalExtension(); 
+            $imageName->move(public_path('images/question/'), $request->categories.'-'.$imageName->getClientOriginalName());    
+            $name = $request->categories.'-'.$imageName->getClientOriginalName() ; 
+            $Question->image = $name ;
+            $Question->save();
+        } 
+
+        if($request->chkimage == 'on'){
+          File::delete(public_path('images\\question\\'.$Question->image));
+          $Question->image = null ;
+          $Question->save();
+        }
+
+
           $questions = Question::find($id);
           $questions->categories = $request->get('categories'); 
           $questions->question = $request->get('question'); 
@@ -134,6 +172,7 @@ class QuestionOperations extends Controller
     public function destroy($id)
     {
         $questions = Question::find($id);
+        File::delete(public_path('images\\question\\'.$questions->image));
         $questions->delete();
         return redirect('/question')->with('success', 'Question Deleted Success!!');
     }

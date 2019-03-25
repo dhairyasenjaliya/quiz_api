@@ -27,3 +27,4 @@ Route::post('login', 'APILoginController@login');
  
 
 Route::get('category','APICategoryController@category');
+Route::post('user','APIUserController@add'); 

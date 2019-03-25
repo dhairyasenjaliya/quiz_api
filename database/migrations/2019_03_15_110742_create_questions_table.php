@@ -18,6 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->integer('categories')->unsigned();
             $table->string('question');
             $table->enum('answer', ['true', 'false']);
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->foreign('categories')
             ->references('id')->on('categories')

@@ -12,15 +12,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h3>Edit Question</h3></div>               
-                <div class="table-responsive">                            
+                <div class="card-header"><h3>Edit Question</h3></div>   
+                <div class="table-responsive">  
              </div>
         </div>
     
         <div class="d-flex justify-content-center">
 
         <div class="modal-body">
-                    <form method="post" action="{{ route('quest.update', $questions->id) }}">
+                    <form method="post" enctype="multipart/form-data" action="{{ route('quest.update', $questions->id) }}">
                         @method('PATCH')
                         @csrf
                         <div class="form-group">
@@ -56,8 +56,54 @@
                             False
                           <input type="radio" name="answer"  value="False" 
                           {{ $questions->answer  == 'false' ? 'checked' : '' }} >                        
+                            <br>
+                          <label for="recipient-img" class="col-form-label">Image :</label>
+                          @if( $questions->image  != null)
+                            <div ><img src="{{url('images/question/'.$questions->image)}}" height=80 width=80/></div> 
+                            <br>
+                            <div class="file is-danger has-name is-boxed">
+                                <label class="file-label">
+                                
+                                  <input class="file-input" type="file" name="filenames">
+                                  <span class="file-cta">
 
-                        </div>           
+                                    <span class="file-icon">
+                                      <i class="fas fa-cloud-upload-alt"></i>
+                                    </span>
+                                  
+                                    <span class="file-label">
+                                        Update
+                                    </span>
+                                  </span>
+                                  <span class="file-name">
+                                  
+                                  </span>
+                                </label>
+                              </div>
+                          @else 
+                            <div class="file is-danger has-name is-boxed">
+                                <label class="file-label">
+                                
+                                  <input class="file-input" type="file" name="filenames">
+                                  <span class="file-cta">
+
+                                    <span class="file-icon">
+                                      <i class="fas fa-cloud-upload-alt"></i>
+                                    </span>
+                                  
+                                    <span class="file-label">
+                                        Upload Image
+                                    </span>
+                                  </span>
+                                  <span class="file-name">
+                                  
+                                  </span>
+                                </label>
+                              </div>
+                          @endif 
+                          <input type="checkbox" name="chkimage"  > No image  
+
+                        </div>  
                         <button type="submit" class="btn btn-primary">Update</button>
                         <a href="{{route('question') }}" class="btn btn-danger">Cancel</a>
                       </form>

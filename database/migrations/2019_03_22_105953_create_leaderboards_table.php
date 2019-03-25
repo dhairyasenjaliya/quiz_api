@@ -24,7 +24,6 @@ class CreateLeaderboardsTable extends Migration
             ->references('id')->on('categories')
             ->onDelete('cascade');
 
-
             $table->foreign('user_id')
             ->references('id')->on('quizusers')
             ->onDelete('cascade');

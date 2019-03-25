@@ -8,6 +8,7 @@ use LaravelFCM\Message\OptionsBuilder;
 use LaravelFCM\Message\PayloadDataBuilder;
 use LaravelFCM\Message\PayloadNotificationBuilder;
 use FCM;
+use File;
 use LaravelFCM\Message\Topics;
 
 class Operations extends Controller
@@ -42,9 +43,28 @@ class Operations extends Controller
         $request->validate([
             'title'=>'required' 
           ]);
+          if($request->get('isDaily') == 'on'){
+                $check =  "true";
+          }
+          else{
+                $check = "false"; }
+          
+          $imageName = $request->file('filenames');
+            
+                if($imageName!=null)
+                {                    
+                    $extension = $imageName->getClientOriginalExtension();                    
+                    $imageName->move(public_path('images/category/'), $request->id.'-'.$imageName->getClientOriginalName());    
+                    $name = $request->title.'-'.$imageName->getClientOriginalName(); 
+                }
+                else  
+                    $name = null; 
+
           $Categorie = new Categorie([
-            'title' => $request->get('title') 
-          ]);
+            'title' => $request->get('title'), 
+            'isDaily'=> $check,
+            'image' => $name
+          ]);          
           $Categorie->save();
 
         //   $notificationBuilder = new PayloadNotificationBuilder('New Category');
@@ -97,9 +117,34 @@ class Operations extends Controller
           $request->validate([
             'title'=>'required' 
           ]);
+          $check = "false";
+
+          if($request->get('isDaily') == 'on')
+          {
+                $check =  "true";
+          } 
+          $Categorie = Categorie::find($id); 
+          $imageName = $request->file('filenames');
     
+          if($imageName!=null)
+          {
+              File::delete(public_path('images\\category\\'.$Categorie->image));
+              $extension = $imageName->getClientOriginalExtension(); 
+              $imageName->move(public_path('images/category/'), $request->title.'-'.$imageName->getClientOriginalName());    
+              $name = $request->title.'-'.$imageName->getClientOriginalName() ; 
+              $Categorie->image = $name ;
+              $Categorie->save();
+          } 
+
+          if($request->chkimage == 'on'){
+            File::delete(public_path('images\\category\\'.$Categorie->image));
+            $Categorie->image = null ;
+            $Categorie->save();
+          }
+
           $Categorie = Categorie::find($id);
-          $Categorie->title = $request->get('title') ;
+          $Categorie->title = $request->get('title');
+          $Categorie->isDaily = $check;  
           $Categorie->save();
     
           return redirect('/category')->with('success', 'Category has been updated !!');
@@ -112,7 +157,9 @@ class Operations extends Controller
      */
     public function destroy($id)
     {
-        $Categorie = Categorie::find($id);
+        $Categorie = Categorie::find($id);     
+         
+        File::delete(public_path('images\\category\\'.$Categorie->image));
         $Categorie->delete();
         return redirect('/category')->with('success', 'Category Deleted Success!!');
     }
