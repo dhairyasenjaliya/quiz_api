@@ -17,8 +17,7 @@
              </div>
         </div>
     
-        <div class="d-flex justify-content-center">
-
+        <div class="d-flex justify-content-center"> 
         <div class="modal-body">
                     <form method="post" enctype="multipart/form-data" action="{{ route('quest.update', $questions->id) }}">
                         @method('PATCH')
@@ -39,8 +38,7 @@
                                 @endif
                             }
                             @endforeach
-                          </select>
-                           
+                          </select> 
 
                         </div>
 
@@ -59,7 +57,7 @@
                             <br>
                           <label for="recipient-img" class="col-form-label">Image :</label>
                           @if( $questions->image  != null)
-                            <div ><img src="{{url('images/question/'.$questions->image)}}" height=80 width=80/></div> 
+                            <div ><img src="{{url($questions->image)}}" height=80 width=80/></div> 
                             <br>
                             <div class="file is-danger has-name is-boxed">
                                 <label class="file-label">
@@ -108,8 +106,7 @@
                         <a href="{{route('question') }}" class="btn btn-danger">Cancel</a>
                       </form>
                     </div>
-                    <div class="modal-footer">   
-                     
+                        <div class="modal-footer">  
                     </div>
         </div>
 </div>

@@ -35,7 +35,7 @@
                           <br>
                           <label for="recipient-img" class="col-form-label">Image :</label>
                           @if($categories->image != null)
-                            <div ><img src="{{url('images/category/'.$categories->image)}}" height=80 width=80/></div> 
+                            <div ><img src="{{url($categories->image)}}" height=80 width=80/></div> 
                             <br>
                             <div class="file is-danger has-name is-boxed">
                                 <label class="file-label">

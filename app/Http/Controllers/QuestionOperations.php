@@ -64,7 +64,7 @@ class QuestionOperations extends Controller
           {              
               $extension = $imageName->getClientOriginalExtension();                    
               $imageName->move(public_path('images/question/'), $request->categories.'-'.$imageName->getClientOriginalName());    
-              $name = $request->categories.'-'.$imageName->getClientOriginalName(); 
+              $name = 'images\question\\'.$request->categories.'-'.$imageName->getClientOriginalName(); 
               $Question->image = $name;
               $Question->save();   
           } 
@@ -131,28 +131,26 @@ class QuestionOperations extends Controller
           'question'=> 'required',
           'answer'=>'required' ,
           'image' => 'image'
-        ]);
-    
+        ]); 
 
         $Question = Question::find($id); 
         $imageName = $request->file('filenames');
   
         if($imageName!=null)
         {
-            File::delete(public_path('images\\question\\'.$Question->image));
+            File::delete(public_path($Question->image));
             $extension = $imageName->getClientOriginalExtension(); 
             $imageName->move(public_path('images/question/'), $request->categories.'-'.$imageName->getClientOriginalName());    
-            $name = $request->categories.'-'.$imageName->getClientOriginalName() ; 
+            $name = 'images\question\\'.$request->categories.'-'.$imageName->getClientOriginalName() ; 
             $Question->image = $name ;
             $Question->save();
         } 
 
-        if($request->chkimage == 'on'){
-          File::delete(public_path('images\\question\\'.$Question->image));
-          $Question->image = null ;
-          $Question->save();
-        }
-
+          if($request->chkimage == 'on'){
+            File::delete(public_path($Question->image));
+            $Question->image = null ;
+            $Question->save();
+          } 
 
           $questions = Question::find($id);
           $questions->categories = $request->get('categories'); 
@@ -172,7 +170,7 @@ class QuestionOperations extends Controller
     public function destroy($id)
     {
         $questions = Question::find($id);
-        File::delete(public_path('images\\question\\'.$questions->image));
+        File::delete(public_path($questions->image));
         $questions->delete();
         return redirect('/question')->with('success', 'Question Deleted Success!!');
     }

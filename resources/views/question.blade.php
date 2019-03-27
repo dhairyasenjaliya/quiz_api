@@ -134,7 +134,7 @@
         <td>{{ $question->answer }}</td>  
         <td>
           @if($question->image!=null)
-            <div><img src="{{url('/images/question/'.$question->image)}}" height=80 width=80/></div> 
+            <div><img src="{{url($question->image)}}" height=80 width=80/></div> 
           @else
               Upload Image
           @endif

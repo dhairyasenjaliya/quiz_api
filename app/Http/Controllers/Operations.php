@@ -54,8 +54,8 @@ class Operations extends Controller
                 if($imageName!=null)
                 {                    
                     $extension = $imageName->getClientOriginalExtension();                    
-                    $imageName->move(public_path('images/category/'), $request->id.'-'.$imageName->getClientOriginalName());    
-                    $name = $request->title.'-'.$imageName->getClientOriginalName(); 
+                    $imageName->move(public_path('images/category/'), $request->title.'-'.$imageName->getClientOriginalName());    
+                    $name ='images\category\\'.$request->title.'-'.$imageName->getClientOriginalName(); 
                 }
                 else  
                     $name = null; 
@@ -128,18 +128,18 @@ class Operations extends Controller
     
           if($imageName!=null)
           {
-              File::delete(public_path('images\\category\\'.$Categorie->image));
+              File::delete(public_path($Categorie->image));
               $extension = $imageName->getClientOriginalExtension(); 
               $imageName->move(public_path('images/category/'), $request->title.'-'.$imageName->getClientOriginalName());    
-              $name = $request->title.'-'.$imageName->getClientOriginalName() ; 
+              $name = 'images\category\\'.$request->title.'-'.$imageName->getClientOriginalName() ; 
               $Categorie->image = $name ;
               $Categorie->save();
           } 
 
           if($request->chkimage == 'on'){
-            File::delete(public_path('images\\category\\'.$Categorie->image));
-            $Categorie->image = null ;
-            $Categorie->save();
+              File::delete(public_path($Categorie->image));
+              $Categorie->image = null ;
+              $Categorie->save();
           }
 
           $Categorie = Categorie::find($id);
@@ -159,7 +159,7 @@ class Operations extends Controller
     {
         $Categorie = Categorie::find($id);     
          
-        File::delete(public_path('images\\category\\'.$Categorie->image));
+        File::delete(public_path($Categorie->image));
         $Categorie->delete();
         return redirect('/category')->with('success', 'Category Deleted Success!!');
     }

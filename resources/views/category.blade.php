@@ -88,7 +88,7 @@
                           </div> 
                       </div>
                        
-                      <a href="{{ route('home')}}" class="btn btn-warning">Home</a> 
+                      <a href="{{ route('home')}}" class="btn btn-warning">Home</a>  
                       <a href="{{ route('category')}}" class="btn btn-primary">Manage</a> 
                                   
                 <div class="table-responsive"> 
@@ -118,7 +118,7 @@
         </td> 
         <td>
           @if($category->image!=null)
-            <div><img src="{{url('/images/category/'.$category->image)}}" height=80 width=80/></div> 
+            <div><img src="{{url($category->image)}}" height=80 width=80/></div> 
           @else
               Upload Image
           @endif
