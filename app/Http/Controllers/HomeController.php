@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Question;
 use App\Categorie;   
+use App\QuizUser;
 use Illuminate\Support\Facades\Auth;
 use DB; 
 
@@ -48,6 +49,13 @@ class HomeController extends Controller
         $questions = Question::with('Categorie')->latest()->get(); 
         $cate = Categorie::all();        
         return view('question',['questions'=>$questions],['cate'=>$cate]) ;
+    }
+
+
+    public function quizuser()
+    {         
+        $quiz_user = QuizUser::all();        
+        return view('quizuser',['quiz_user'=>$quiz_user]) ;
     }
 
 }

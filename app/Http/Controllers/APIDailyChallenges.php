@@ -14,7 +14,7 @@ class APIDailyChallenges extends Controller
     public function DailyChallenges()
     {      
         $cate = Categorie::select('id')->where('isDaily',true)->get();          
-        $qry = Question::select('id','question','answer')->wherein('categories', $cate)->get(); //->where('categories',$cate->toArray())->get();  
+        $qry = Question::select('id','question','answer','image')->wherein('categories', $cate)->get(); //->where('categories',$cate->toArray())->get();  
 
         return response()->json($qry);
 

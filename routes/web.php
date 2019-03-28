@@ -22,6 +22,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/quizuser', 'HomeController@quizuser')->name('quizuser');
+
 Route::get('/category', 'HomeController@show')->name('category');
  
 Route::get('/edit', 'Operations@edit');
