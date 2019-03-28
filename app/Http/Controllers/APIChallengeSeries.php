@@ -25,7 +25,7 @@ class APIChallengeSeries extends Controller
  
         $cat = Categorie::select('id')->where('title',$search)->get();  
         
-        $qry = Question::select('question','answer','image')->where('categories',$cat->toArray())->get();
+        $qry = Question::select('id','question','answer','image')->where('categories',$cat->toArray())->get();
        
         if($qry == '[]'){  
             return response()->json('No Category Select !!');  
