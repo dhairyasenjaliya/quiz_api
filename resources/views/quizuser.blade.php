@@ -24,6 +24,7 @@
       <tr>
         <th><strong>Id</strong></th>
         <th><strong>Username</strong></th>  
+        <th><strong>Registered Date</strong></th>  
       </tr>
     </thead>
     <tbody>
@@ -31,6 +32,7 @@
       <tr> 
         <td>{{ $category->id }}</td>
         <td>{{ $category->username }}</td>  
+        <td>{{ $category->created_at }}</td>  
             <!-- <td> 
             <a href="{{ route('crud.edit',$category->id)}}" class="btn btn-primary">Edit</a> 
                 </td>

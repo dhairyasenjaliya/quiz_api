@@ -55,7 +55,7 @@ class Operations extends Controller
                 {                    
                     $extension = $imageName->getClientOriginalExtension();                    
                     $imageName->move(public_path('images/category/'), $request->title.'-'.$imageName->getClientOriginalName());    
-                    $name ='images\category\\'.$request->title.'-'.$imageName->getClientOriginalName(); 
+                    $name ='/images/category/'.$request->title.'-'.$imageName->getClientOriginalName(); 
                 }
                 else  
                     $name = null; 
@@ -131,7 +131,7 @@ class Operations extends Controller
               File::delete(public_path($Categorie->image));
               $extension = $imageName->getClientOriginalExtension(); 
               $imageName->move(public_path('images/category/'), $request->title.'-'.$imageName->getClientOriginalName());    
-              $name = 'images\category\\'.$request->title.'-'.$imageName->getClientOriginalName() ; 
+              $name = 'images/category/'.$request->title.'-'.$imageName->getClientOriginalName() ; 
               $Categorie->image = $name ;
               $Categorie->save();
           } 

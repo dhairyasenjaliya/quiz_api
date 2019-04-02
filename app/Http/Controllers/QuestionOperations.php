@@ -64,7 +64,7 @@ class QuestionOperations extends Controller
           {              
               $extension = $imageName->getClientOriginalExtension();                    
               $imageName->move(public_path('images/question/'), $request->categories.'-'.$imageName->getClientOriginalName());    
-              $name = 'images\question\\'.$request->categories.'-'.$imageName->getClientOriginalName(); 
+              $name = 'images/question/'.$request->categories.'-'.$imageName->getClientOriginalName(); 
               $Question->image = $name;
               $Question->save();   
           } 
@@ -141,7 +141,7 @@ class QuestionOperations extends Controller
             File::delete(public_path($Question->image));
             $extension = $imageName->getClientOriginalExtension(); 
             $imageName->move(public_path('images/question/'), $request->categories.'-'.$imageName->getClientOriginalName());    
-            $name = 'images\question\\'.$request->categories.'-'.$imageName->getClientOriginalName() ; 
+            $name = 'images/question/'.$request->categories.'-'.$imageName->getClientOriginalName() ; 
             $Question->image = $name ;
             $Question->save();
         } 
