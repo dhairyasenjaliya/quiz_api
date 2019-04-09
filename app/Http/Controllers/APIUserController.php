@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\QuizUser;
+use App\LeaderBoards;
 use Validator;
 
 class APIUserController extends Controller
@@ -23,4 +24,27 @@ class APIUserController extends Controller
         ]);
          return response()->json($data->username);
     }
+
+    public function score(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'category_id'  => 'required',
+            'user_id' => 'required',
+            'time' => 'required',
+            'total'  => 'required',
+        ]);
+    
+        if($validator->fails()) {
+            return response()->json([ 'error'=> $validator->messages()], 401);
+        }
+ 
+        $data = LeaderBoards::create([ 
+            'category_id' => $request->get('category_id'),
+            'user_id' => $request->get('user_id'),
+            'time' => $request->get('time'),
+            'total' => $request->get('total'), 
+        ]);
+         return response()->json($data);
+    }
+    
 }

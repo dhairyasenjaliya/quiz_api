@@ -17,6 +17,8 @@ Route::get('ChallengeSeries','APIChallengeSeries@ChallengeSeries');
 // User
 
 Route::post('user','APIUserController@add'); 
+Route::post('score','APIUserController@score'); 
+
  
 // DailyChallenges
 
