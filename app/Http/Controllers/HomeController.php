@@ -60,7 +60,7 @@ class HomeController extends Controller
  
     public function leadersboard()
     {
-        $quiz_user = LeaderBoards::all();        
+        $quiz_user = LeaderBoards::get(); 
         return view('leadersboard',['quiz_user'=>$quiz_user]) ; 
     }
 

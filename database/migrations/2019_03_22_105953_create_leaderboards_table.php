@@ -18,7 +18,7 @@ class CreateLeaderboardsTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->time('time');
-            $table->time('total');
+            $table->integer('total');
 
             $table->foreign('category_id')
             ->references('id')->on('categories')

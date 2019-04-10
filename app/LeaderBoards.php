@@ -14,8 +14,15 @@ class LeaderBoards extends Model
         'time',
         'total'
     ];
-    public function Question()
+
+    // public function Question()
+    // {
+    //     return $this->hasMany(Question::class);
+    // }
+
+    public function QuizUser()
     {
-        return $this->hasMany(Question::class);
+        return $this->belongsTo(QuizUser::class);
     }
+
 }

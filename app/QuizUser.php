@@ -10,4 +10,9 @@ class QuizUser extends Model
     protected $fillable = [
         'username'  
     ];
+
+    public function LeaderBoards()
+    {
+        return $this->hasMany(LeaderBoards::class,'user_id');
+    }
 }
