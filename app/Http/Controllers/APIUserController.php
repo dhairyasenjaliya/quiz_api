@@ -46,5 +46,11 @@ class APIUserController extends Controller
         ]);
          return response()->json($data);
     }
+
+    public function getscore()
+    {
+        $data = LeaderBoards::all();
+        return response()->json($data);
+    }
     
 }
