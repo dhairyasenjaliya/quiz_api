@@ -60,3 +60,7 @@ Route::get('/question', 'HomeController@showquestion')->name('question');
 Route::get('/questionedit', 'QuestionOperations@edit');
 
 Route::resource('quest', 'QuestionOperations');
+
+
+
+Route::get('/leadersboard', 'HomeController@leadersboard')->name('leadersboard');

@@ -9,10 +9,10 @@ use App\User;
 use App\Question;
 use App\Categorie;   
 use App\QuizUser;
+use App\Leaderboards;
 use Illuminate\Support\Facades\Auth;
 use DB; 
-
-
+ 
 
 class HomeController extends Controller
 {
@@ -56,6 +56,12 @@ class HomeController extends Controller
     {         
         $quiz_user = QuizUser::all();        
         return view('quizuser',['quiz_user'=>$quiz_user]) ;
+    }
+ 
+    public function leadersboard()
+    {
+        $quiz_user = Leaderboards::all();        
+        return view('leadersboard',['quiz_user'=>$quiz_user]) ; 
     }
 
 }

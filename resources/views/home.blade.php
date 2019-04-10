@@ -17,6 +17,7 @@
                     <a class="btn btn-primary" href="{{ route('category') }}"> Category </a>
                     <a class="btn btn-danger" href="{{ route('question') }}"> Question </a>
                     <a class="btn btn-success" href="{{ route('quizuser') }}"> User </a>
+                    <a class="btn btn-warning" href="{{ route('leadersboard') }}"> Leader's Board </a>
                 </div>
             </div>
         </div>
