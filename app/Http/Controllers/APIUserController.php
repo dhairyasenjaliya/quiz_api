@@ -22,7 +22,7 @@ class APIUserController extends Controller
         $data = QuizUser::create([
             'username' => $request->get('username'), 
         ]);
-        return response()->json($data->id);
+        return response()->json($data);
     }
 
     public function score(Request $request)
