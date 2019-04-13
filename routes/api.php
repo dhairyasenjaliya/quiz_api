@@ -18,8 +18,7 @@ Route::get('ChallengeSeries','APIChallengeSeries@ChallengeSeries');
 
 Route::post('user','APIUserController@add'); 
 Route::post('score','APIUserController@score'); 
-Route::get('getscore','APIUserController@getscore'); 
-
+Route::get('getscore','APIUserController@getscore');  
 Route::get('getusers','APIUserController@getusers'); 
 
  
@@ -31,4 +30,4 @@ Route::get('DailyChallenges','APIDailyChallenges@DailyChallenges');
 
 Route::get('category_image','APICategoryController@category_image');
 
-Route::get('getCategory','APICategoryController@getCategory');
+Route::get('getcategory','APICategoryController@getCategory');
