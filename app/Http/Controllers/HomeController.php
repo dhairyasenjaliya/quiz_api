@@ -19,7 +19,7 @@ class HomeController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @return void 
      */
     public function __construct()
     {
@@ -47,10 +47,9 @@ class HomeController extends Controller
     public function showquestion()
     {          
         $questions = Question::with('Categorie')->latest()->get(); 
-        $cate = Categorie::all();        
+        $cate = Categorie::all();  
         return view('question',['questions'=>$questions],['cate'=>$cate]) ;
-    }
-
+    } 
 
     public function quizuser()
     {         
@@ -62,6 +61,5 @@ class HomeController extends Controller
     {
         $quiz_user = LeaderBoards::get(); 
         return view('leadersboard',['quiz_user'=>$quiz_user]) ; 
-    }
-
+    } 
 }

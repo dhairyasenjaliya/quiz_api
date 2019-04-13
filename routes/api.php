@@ -20,6 +20,7 @@ Route::post('user','APIUserController@add');
 Route::post('score','APIUserController@score'); 
 Route::get('getscore','APIUserController@getscore'); 
 
+Route::get('getusers','APIUserController@getusers'); 
 
  
 // DailyChallenges
@@ -29,3 +30,5 @@ Route::get('DailyChallenges','APIDailyChallenges@DailyChallenges');
 // Image
 
 Route::get('category_image','APICategoryController@category_image');
+
+Route::get('getCategory','APICategoryController@getCategory');

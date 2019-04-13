@@ -25,6 +25,12 @@ class APIUserController extends Controller
         return response()->json($data);
     }
 
+
+   public function getusers(){ 
+        $user = QuizUser::get();
+        return response()->json($user);
+   }
+
     public function score(Request $request)
     {
         $validator = Validator::make($request->all(), [

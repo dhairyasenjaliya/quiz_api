@@ -17,5 +17,11 @@ class APICategoryController extends Controller
         $qry = Categorie::all('image');  
         return response()->json($qry);
     }
+
+    public function getCategory()
+    {      
+        $qry = Categorie::get();  
+        return response()->json($qry);
+    }
  
 }
