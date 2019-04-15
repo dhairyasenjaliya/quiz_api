@@ -34,7 +34,7 @@
       <tr> 
         <td>{{ $category->id }}</td>
         <td>{{ $category->categorie->title  }} ( {{ $category->categorie->id  }}  )  </td>  
-        <td>{{ $category->QuizUser->username }}</td>  
+        <td>{{ $category->quizuser->username }}</td>  
         <td>{{ $category->time }}</td>  
         <td>{{ $category->total }}</td>  
             <!-- <td> 
