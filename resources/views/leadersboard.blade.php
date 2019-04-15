@@ -32,7 +32,8 @@
     <tbody>
     @foreach ($quiz_user as $category)
       <tr> 
-        <td>{{ $category->id }}</td>   //( {{ $category->categorie->id  }}  )
+        <td>{{ $category->id }}</td>   
+        <!--  ( {{ $category->categorie->id  }}  ) -->
         <td>{{ $category->categorie  }}   </td>  
         <td>{{ $category->quizuser->username }}</td>  
         <td>{{ $category->time }}</td>  
