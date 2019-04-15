@@ -22,7 +22,7 @@ class LeaderBoards extends Model
 
     public function QuizUser()
     {
-        return $this->belongsTo(QuizUser::class);
+        return $this->belongsTo(QuizUser::class,'id');
     }
 
 }

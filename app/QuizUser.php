@@ -13,6 +13,6 @@ class QuizUser extends Model
 
     public function LeaderBoards()
     {
-        return $this->hasMany(LeaderBoards::class,'user_id');
+        return $this->hasMany(LeaderBoards::class);
     }
 }

@@ -38,7 +38,7 @@ class APIUserController extends Controller
             if($validator->fails()) {
                 return response()->json([ 'error'=> $validator->messages()], 401);
             }
-            $user = LeaderBoards::where('category_id','=',$request->category_id)->orderBy('total', 'desc')->take(10)->get();
+            $user = LeaderBoards::with('QuizUser')->where('category_id','=',$request->category_id)->orderBy('total', 'desc')->take(10)->get();
             return response()->json($user);
         }
 
