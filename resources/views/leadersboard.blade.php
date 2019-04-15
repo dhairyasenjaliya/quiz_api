@@ -33,7 +33,7 @@
     @foreach ($quiz_user as $category)
       <tr> 
         <td>{{ $category->id }}</td>
-        <td>{{ $category->category_id }}</td>  
+        <td>{{ $category->category_id  }}</td>  
         <td>{{ $category->user_id }}</td>  
         <td>{{ $category->time }}</td>  
         <td>{{ $category->total }}</td>  

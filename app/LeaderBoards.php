@@ -13,16 +13,15 @@ class LeaderBoards extends Model
         'user_id' ,
         'time',
         'total'
-    ];
-
-    // public function Question()
-    // {
-    //     return $this->hasMany(Question::class);
-    // }
-
+    ]; 
+    
     public function QuizUser()
     {
-        return $this->belongsTo(QuizUser::class,'id');
+        return $this->belongsTo(QuizUser::class,'user_id');
     }
 
+    public function Categorie()
+    {
+        return $this->belongsTo(Categorie::class,'id');
+    } 
 }

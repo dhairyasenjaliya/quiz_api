@@ -59,7 +59,7 @@ class HomeController extends Controller
  
     public function leadersboard()
     {
-        $quiz_user = LeaderBoards::get(); 
-        return view('leadersboard',['quiz_user'=>$quiz_user]) ; 
+        $quiz_user = LeaderBoards::with('QuizUser')->with('Categorie')->get();   
+        return view('leadersboard',['quiz_user'=>$quiz_user]) ;  
     } 
 }

@@ -16,4 +16,9 @@ class Categorie extends Model
     {
         return $this->hasMany(Question::class);
     }
+
+    public function LeaderBoards()
+    {
+        return $this->hasMany(LeaderBoards::class);
+    }
 }

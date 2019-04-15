@@ -111,10 +111,8 @@
       <tr> 
         <td>{{ $category->id }}</td>
         <td>{{ $category->title }}</td> 
-        <td>
-        
-              {{ $category->isDaily }}
-        
+        <td> 
+              {{ $category->isDaily }} 
         </td> 
         <td>
           @if($category->image!=null)
