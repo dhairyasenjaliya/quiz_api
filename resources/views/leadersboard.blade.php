@@ -23,8 +23,8 @@
     <thead class="thead-dark" >
       <tr>
         <th><strong>Id</strong></th>
-        <th><strong>Category Id</strong></th>  
-        <th><strong>User Id</strong></th>  
+        <th><strong>Category </strong></th>  
+        <th><strong>User Name</strong></th>  
         <th><strong>Time</strong></th>  
         <th><strong>Total</strong></th>
       </tr>
@@ -33,8 +33,8 @@
     @foreach ($quiz_user as $category)
       <tr> 
         <td>{{ $category->id }}</td>
-        <td>{{ $category->category_id  }}</td>  
-        <td>{{ $category->user_id }}</td>  
+        <td>{{ $category->Categorie->title  }} ( {{ $category->Categorie->id  }}  )  </td>  
+        <td>{{ $category->QuizUser->username }}</td>  
         <td>{{ $category->time }}</td>  
         <td>{{ $category->total }}</td>  
             <!-- <td> 

@@ -22,6 +22,6 @@ class LeaderBoards extends Model
 
     public function Categorie()
     {
-        return $this->belongsTo(Categorie::class,'id');
+        return $this->belongsTo(Categorie::class,'user_id');
     } 
 }
