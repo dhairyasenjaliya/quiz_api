@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\QuizUser;
 use App\LeaderBoards;
 use Validator;
+use DB;
 
 class APIUserController extends Controller
 {
@@ -20,7 +21,7 @@ class APIUserController extends Controller
             }
     
             $data = QuizUser::create([
-                'username' => $request->get('usern  ame'), 
+                'username' => $request->get('username'), 
             ]);
             return response()->json($data);
         }
@@ -53,6 +54,10 @@ class APIUserController extends Controller
             if($validator->fails()) {
                 return response()->json([ 'error'=> $validator->messages()], 401);
             } 
+               
+            $result = LeaderBoards::where('category_id','=',$request->category_id)->where('user_id','=',$request->user_id)->get(); 
+             
+            dd($result);
 
             $data = LeaderBoards::create([ 
                 'category_id' => $request->get('category_id'),
@@ -60,6 +65,8 @@ class APIUserController extends Controller
                 'time' => $request->get('time'),
                 'total' => $request->get('total'), 
             ]);
+  
+
             return response()->json($data);
         }
 
