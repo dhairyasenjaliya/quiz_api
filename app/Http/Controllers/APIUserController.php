@@ -9,53 +9,65 @@ use Validator;
 
 class APIUserController extends Controller
 {
-    public function add(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'username' => 'required|unique:quizusers' 
-        ]);
+        public function add(Request $request)
+        {
+            $validator = Validator::make($request->all(), [
+                'username' => 'required|unique:quizusers' 
+            ]);
+        
+            if($validator->fails()) {
+                return response()->json([ 'error'=> $validator->messages()], 401);
+            }
     
-        if($validator->fails()) {
-            return response()->json([ 'error'=> $validator->messages()], 401);
+            $data = QuizUser::create([
+                'username' => $request->get('usern  ame'), 
+            ]);
+            return response()->json($data);
         }
- 
-        $data = QuizUser::create([
-            'username' => $request->get('username'), 
-        ]);
-        return response()->json($data);
-    }
-
-
-   public function getusers(){ 
-        $user = QuizUser::get();
-        return response()->json($user);
-   }
-
-    public function score(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'category_id'  => 'required',
-            'user_id' => 'required',
-            'time' => 'required',
-            'total'  => 'required',
-        ]);
     
-        if($validator->fails()) {
-            return response()->json([ 'error'=> $validator->messages()], 401);
-        }
- 
-        $data = LeaderBoards::create([ 
-            'category_id' => $request->get('category_id'),
-            'user_id' => $request->get('user_id'),
-            'time' => $request->get('time'),
-            'total' => $request->get('total'), 
-        ]);
-        return response()->json($data);
-    }
+        public function getusers(){ 
+            $user = QuizUser::get();
+            return response()->json($user);
+        }    
 
-    public function getscore()
-    {
-        $data = LeaderBoards::all();
-        return response()->json($data);
-    }    
+        public function leadersboard(Request $request){ 
+            $validator = Validator::make($request->all(), [
+                'category_id'  => 'required', 
+            ]);
+            if($validator->fails()) {
+                return response()->json([ 'error'=> $validator->messages()], 401);
+            }
+            $user = LeaderBoards::where('category_id','=',$request->category_id)->orderBy('total', 'desc')->take(10)->get();
+            return response()->json($user);
+        }
+
+        public function score(Request $request)
+        {
+            $validator = Validator::make($request->all(), [
+                'category_id'  => 'required',
+                'user_id' => 'required',
+                'time' => 'required',
+                'total'  => 'required',
+            ]);
+        
+            if($validator->fails()) {
+                return response()->json([ 'error'=> $validator->messages()], 401);
+            } 
+
+            $data = LeaderBoards::create([ 
+                'category_id' => $request->get('category_id'),
+                'user_id' => $request->get('user_id'),
+                'time' => $request->get('time'),
+                'total' => $request->get('total'), 
+            ]);
+            return response()->json($data);
+        }
+
+        public function getscore()
+        {
+            $data = LeaderBoards::all();
+            return response()->json($data);
+        } 
+        
+        
 }

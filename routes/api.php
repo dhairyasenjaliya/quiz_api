@@ -20,6 +20,7 @@ Route::post('user','APIUserController@add');
 Route::post('score','APIUserController@score'); 
 Route::get('getscore','APIUserController@getscore');  
 Route::get('getusers','APIUserController@getusers'); 
+Route::post('leadersboard','APIUserController@leadersboard'); 
 
  
 // DailyChallenges
