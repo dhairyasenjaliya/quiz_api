@@ -54,20 +54,26 @@ class APIUserController extends Controller
             if($validator->fails()) {
                 return response()->json([ 'error'=> $validator->messages()], 401);
             } 
-               
-            $result = LeaderBoards::where('category_id','=',$request->category_id)->where('user_id','=',$request->user_id)->get(); 
+
+            $result = LeaderBoards::orwhere('category_id','=',$request->category_id)->where('user_id','=',$request->user_id)->first();              
              
-            dd($result);
-
-            $data = LeaderBoards::create([ 
-                'category_id' => $request->get('category_id'),
-                'user_id' => $request->get('user_id'),
-                'time' => $request->get('time'),
-                'total' => $request->get('total'), 
-            ]);
-  
-
-            return response()->json($data);
+                if($result){ 
+                    foreach($result as $totals){  
+                        if($request->total > $result->total){
+                            $result->total = $request->total ; 
+                            $result->save();
+                        } 
+                    }     
+                } 
+                else {
+                    $data = LeaderBoards::create([ 
+                        'category_id' => $request->get('category_id'),
+                        'user_id' => $request->get('user_id'),
+                        'time' => $request->get('time'),
+                        'total' => $request->get('total'), 
+                    ]);
+                    return response()->json($data);
+            }  
         }
 
         public function getscore()
