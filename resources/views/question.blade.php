@@ -129,7 +129,7 @@
     @foreach ($questions as $question)
       <tr> 
         <td>{{ $question->id }}</td>
-        <td>{{ $question->categorie  }}</td> 
+        <td>{{ $question->categorie->title }}</td> 
         <td>{{ $question->question }}</td>  
         <td>{{ $question->answer }}</td>  
         <td>
