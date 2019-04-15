@@ -13,8 +13,8 @@
             <div class="card">
                 <div class="card-header"><h3>User's Data</h3></div>  
                 
-                <div class="d-flex justify-content-center">           
-                      <a href="{{ route('home')}}" class="btn btn-warning">Home</a>                                    
+                <div class="d-flex justify-content-center"> 
+                      <a href="{{ route('home')}}" class="btn btn-warning">Home</a>
                 <div class="table-responsive"> 
              </div>
         </div>
@@ -33,7 +33,7 @@
     @foreach ($quiz_user as $category)
       <tr> 
         <td>{{ $category->id }}</td>
-        <td>{{ $category->categorie->title  }} ( {{ $category->categorie->id  }}  )  </td>  
+        <td>{{ $category->Categorie->title  }} ( {{ $category->Categorie->id  }}  )  </td>  
         <td>{{ $category->quizuser->username }}</td>  
         <td>{{ $category->time }}</td>  
         <td>{{ $category->total }}</td>  
